@@ -10,6 +10,8 @@ namespace WebApplication1
         public static void Register(HttpConfiguration config)
         {
             // Web API 設定和服務
+            // 關閉XML回傳格式
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
 
             // Web API 路由
             config.MapHttpAttributeRoutes();

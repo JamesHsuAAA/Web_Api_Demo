@@ -12,6 +12,8 @@ namespace WebApplication1
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            // 關閉XmlFormatter 所支援的媒體類型(MediaType)
+            //GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
         }
     }
 }
