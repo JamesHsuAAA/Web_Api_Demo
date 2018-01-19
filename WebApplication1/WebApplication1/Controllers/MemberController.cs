@@ -8,6 +8,9 @@ using System.Web.Http;
 
 namespace WebApplication1.Controllers
 {
+    /// <summary>
+    /// Member API 項目
+    /// </summary>
     [RoutePrefix("api/member")]
     public class MemberController : ApiController
     {
@@ -17,19 +20,23 @@ namespace WebApplication1.Controllers
             new Models.Member { Name="terry", Id="a222222222", Age=32, Email="terry@gmail.com" }
         };
 
-        // http://localhost:59882/api/member/GetAllMember
+        /// <summary>
+        /// 取得所有成員資料
+        /// </summary>
+        /// <returns></returns>
         [Route("GetAllMember")]
-        //取得所有成員資料
         public IEnumerable<Models.Member> GetAllMember()
         {
             return Member;
         }
 
-        // http://localhost:59882/api/member/GetMember?id=a222222222
-        // http://localhost:59882/api/member/GetMember/a222222222
+        /// <summary>
+        /// 取得特定名稱成員資料
+        /// </summary>
+        /// <param name="id">成員ID</param>
+        /// <returns></returns>
         [Route("GetMember")]
         [Route("GetMember/{id}")]
-        //取得特定名稱成員資料
         public IHttpActionResult GetMember(string id)
         {
             var result = Member.FirstOrDefault(x => x.Id == id);
@@ -39,9 +46,13 @@ namespace WebApplication1.Controllers
                 return Ok(result);
         }
 
+        /// <summary>
+        /// 取得特定名稱成員資料
+        /// </summary>
+        /// <param name="PostData">{ "Name": "justin", "Id": "a11111111", "Age": 28, "Email": "justin@gmail.com"}</param>
+        /// <returns></returns>
         [Route("GetMember")]
         [HttpPost]
-        //取得特定名稱成員資料
         public IHttpActionResult GetMember(JObject PostData)
         {
             var result = Member.FirstOrDefault(x => x.Name == PostData["Name"].ToString());
